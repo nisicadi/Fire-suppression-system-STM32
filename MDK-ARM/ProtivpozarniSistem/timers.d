@@ -1,0 +1,15 @@
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/timers.c
+protivpozarnisistem\timers.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+protivpozarnisistem\timers.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+protivpozarnisistem\timers.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+protivpozarnisistem\timers.o: ../Core/Inc/FreeRTOSConfig.h
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3/portmacro.h
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
+protivpozarnisistem\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h

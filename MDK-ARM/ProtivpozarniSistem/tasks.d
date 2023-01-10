@@ -1,0 +1,16 @@
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/tasks.c
+protivpozarnisistem\tasks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+protivpozarnisistem\tasks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+protivpozarnisistem\tasks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+protivpozarnisistem\tasks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+protivpozarnisistem\tasks.o: ../Core/Inc/FreeRTOSConfig.h
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3/portmacro.h
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+protivpozarnisistem\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h

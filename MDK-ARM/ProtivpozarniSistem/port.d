@@ -1,0 +1,12 @@
+protivpozarnisistem\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3/port.c
+protivpozarnisistem\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+protivpozarnisistem\port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+protivpozarnisistem\port.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+protivpozarnisistem\port.o: ../Core/Inc/FreeRTOSConfig.h
+protivpozarnisistem\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+protivpozarnisistem\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+protivpozarnisistem\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+protivpozarnisistem\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3/portmacro.h
+protivpozarnisistem\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+protivpozarnisistem\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+protivpozarnisistem\port.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

@@ -1,0 +1,14 @@
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/croutine.c
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+protivpozarnisistem\croutine.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+protivpozarnisistem\croutine.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+protivpozarnisistem\croutine.o: ../Core/Inc/FreeRTOSConfig.h
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3/portmacro.h
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/croutine.h
+protivpozarnisistem\croutine.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
