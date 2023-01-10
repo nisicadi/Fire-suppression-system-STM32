@@ -67,9 +67,9 @@ void Error_Handler(void);
 #define YLED_GPIO_Port GPIOA
 #define GLED_Pin GPIO_PIN_7
 #define GLED_GPIO_Port GPIOA
-#define Reset_Pin GPIO_PIN_12
-#define Reset_GPIO_Port GPIOB
-#define Reset_EXTI_IRQn EXTI15_10_IRQn
+#define EXTI_Pin GPIO_PIN_12
+#define EXTI_GPIO_Port GPIOB
+#define EXTI_EXTI_IRQn EXTI15_10_IRQn
 
 /* USER CODE BEGIN Private defines */
 

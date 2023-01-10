@@ -67,7 +67,21 @@ static void MX_NVIC_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	UNUSED(GPIO_Pin);
+	if(GPIO_Pin == GPIO_PIN_12 && areSprinklersActivated)
+	{
+		osSemaphoreWait(countingSemaphoreHandle, osWaitForever);
+		areSprinklersActivated = false;
+			
+		HAL_GPIO_WritePin(GPIOA, RLED_Pin, 0);
+		HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
+		HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
 
+		osSemaphoreRelease(countingSemaphoreHandle);
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -207,7 +221,7 @@ void SystemClock_Config(void)
 static void MX_NVIC_Init(void)
 {
   /* EXTI15_10_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 15, 0);
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 5, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 }
 
@@ -289,11 +303,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : Reset_Pin */
-  GPIO_InitStruct.Pin = Reset_Pin;
+  /*Configure GPIO pin : EXTI_Pin */
+  GPIO_InitStruct.Pin = EXTI_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(Reset_GPIO_Port, &GPIO_InitStruct);
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(EXTI_GPIO_Port, &GPIO_InitStruct);
 
 }
 
@@ -314,21 +328,21 @@ void StartGasSensor(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-		if(areSprinklersActivated == false)
+		if(!areSprinklersActivated)
 		{
 			osSemaphoreWait(countingSemaphoreHandle, osWaitForever);
-			if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_15) == 0)
+			if(HAL_GPIO_ReadPin(GPIOC, GasSensor_Pin) == 0)
 			{
 				isGasDetected = true;
-				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, 1);
-				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, 0);
+				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 1);
+				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
 			}
 			else
 			{
 				isGasDetected = false;
-				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, 0);
+				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
 				if(currentTemp <= maxTemp)
-					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, 1);
+					HAL_GPIO_WritePin(GPIOA, GLED_Pin, 1);
 			}
 			osSemaphoreRelease(countingSemaphoreHandle);
 		}
@@ -355,14 +369,14 @@ void StartTemperatureSensor(void const * argument)
 				currentTemp = (((HAL_ADC_GetValue(&hadc1) * 500.0)/4095.0) * 2.393)+0.5; 
 		HAL_ADC_Stop(&hadc1);
 		
-		if(areSprinklersActivated == false)
+		if(!areSprinklersActivated)
 		{
 			osSemaphoreWait(countingSemaphoreHandle, osWaitForever);
 			if(currentTemp > maxTemp && isGasDetected)
 			{		
-				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
-				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, 0);
-				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, 0);
+				HAL_GPIO_WritePin(GPIOA, RLED_Pin, 1);
+				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
+				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
 			
 				areSprinklersActivated = true;
 			}
@@ -384,7 +398,7 @@ void StartTemperatureSensor(void const * argument)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
-
+	
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM1) {
     HAL_IncTick();
