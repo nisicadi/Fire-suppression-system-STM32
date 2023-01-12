@@ -48,7 +48,7 @@ osThreadId runActionsHandle;
 osSemaphoreId countingSemaphoreHandle;
 /* USER CODE BEGIN PV */
 volatile float currentTemp = 0.0;
-const float maxTemp = 300.0;
+const float maxTemp = 150.0;
 
 volatile bool isGasDetected = false;
 volatile bool areSprinklersActivated = false;
