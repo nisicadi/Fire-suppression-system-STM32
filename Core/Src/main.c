@@ -44,10 +44,11 @@ ADC_HandleTypeDef hadc1;
 
 osThreadId checkGasHandle;
 osThreadId checkTemperaturHandle;
+osThreadId runActionsHandle;
 osSemaphoreId countingSemaphoreHandle;
 /* USER CODE BEGIN PV */
-volatile float currentTemp;
-const float maxTemp = 160;
+volatile float currentTemp = 0.0;
+const float maxTemp = 300.0;
 
 volatile bool isGasDetected = false;
 volatile bool areSprinklersActivated = false;
@@ -59,6 +60,7 @@ static void MX_GPIO_Init(void);
 static void MX_ADC1_Init(void);
 void StartGasSensor(void const * argument);
 void StartTemperatureSensor(void const * argument);
+void StartRunActions(void const * argument);
 
 static void MX_NVIC_Init(void);
 /* USER CODE BEGIN PFP */
@@ -149,6 +151,10 @@ int main(void)
   /* definition and creation of checkTemperatur */
   osThreadDef(checkTemperatur, StartTemperatureSensor, osPriorityNormal, 0, 128);
   checkTemperaturHandle = osThreadCreate(osThread(checkTemperatur), NULL);
+
+  /* definition and creation of runActions */
+  osThreadDef(runActions, StartRunActions, osPriorityAboveNormal, 0, 128);
+  runActionsHandle = osThreadCreate(osThread(runActions), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -328,24 +334,11 @@ void StartGasSensor(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-		if(!areSprinklersActivated)
-		{
-			osSemaphoreWait(countingSemaphoreHandle, osWaitForever);
-			if(HAL_GPIO_ReadPin(GPIOC, GasSensor_Pin) == 0)
-			{
-				isGasDetected = true;
-				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 1);
-				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
-			}
-			else
-			{
-				isGasDetected = false;
-				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
-				if(currentTemp <= maxTemp)
-					HAL_GPIO_WritePin(GPIOA, GLED_Pin, 1);
-			}
-			osSemaphoreRelease(countingSemaphoreHandle);
-		}
+		if(HAL_GPIO_ReadPin(GPIOC, GasSensor_Pin) == 0)
+			isGasDetected = true;
+		else
+			isGasDetected = false;
+		
     osDelay(10);
   }
   /* USER CODE END 5 */
@@ -368,7 +361,25 @@ void StartTemperatureSensor(void const * argument)
 		if(HAL_ADC_PollForConversion(&hadc1, 5) == HAL_OK)
 				currentTemp = (((HAL_ADC_GetValue(&hadc1) * 500.0)/4095.0) * 2.393)+0.5; 
 		HAL_ADC_Stop(&hadc1);
-		
+
+    osDelay(10);
+  }
+  /* USER CODE END StartTemperatureSensor */
+}
+
+/* USER CODE BEGIN Header_StartRunActions */
+/**
+* @brief Function implementing the runActions thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartRunActions */
+void StartRunActions(void const * argument)
+{
+  /* USER CODE BEGIN StartRunActions */
+  /* Infinite loop */
+  for(;;)
+  {				
 		if(!areSprinklersActivated)
 		{
 			osSemaphoreWait(countingSemaphoreHandle, osWaitForever);
@@ -379,12 +390,24 @@ void StartTemperatureSensor(void const * argument)
 				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
 			
 				areSprinklersActivated = true;
+			} 
+			else if (currentTemp <= maxTemp && isGasDetected)
+			{
+				HAL_GPIO_WritePin(GPIOA, RLED_Pin, 0);
+				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 1);
+				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
+			} 
+			else 
+			{
+				HAL_GPIO_WritePin(GPIOA, RLED_Pin, 0);
+				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
+				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 1);
 			}
 			osSemaphoreRelease(countingSemaphoreHandle);
 		}
     osDelay(10);
   }
-  /* USER CODE END StartTemperatureSensor */
+  /* USER CODE END StartRunActions */
 }
 
 /**
