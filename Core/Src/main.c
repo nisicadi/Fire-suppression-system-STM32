@@ -72,14 +72,14 @@ static void MX_NVIC_Init(void);
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	UNUSED(GPIO_Pin);
-	if(GPIO_Pin == GPIO_PIN_12 && areSprinklersActivated)
+	if(GPIO_Pin == EXTI_Pin && areSprinklersActivated)
 	{
 		osSemaphoreWait(countingSemaphoreHandle, osWaitForever);
 		areSprinklersActivated = false;
 			
-		HAL_GPIO_WritePin(GPIOA, RLED_Pin, 0);
-		HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
-		HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
+		HAL_GPIO_WritePin(RLED_GPIO_Port, RLED_Pin, 0);
+		HAL_GPIO_WritePin(YLED_GPIO_Port, YLED_Pin, 0);
+		HAL_GPIO_WritePin(GLED_GPIO_Port, GLED_Pin, 0);
 
 		osSemaphoreRelease(countingSemaphoreHandle);
 	}
@@ -334,7 +334,7 @@ void StartGasSensor(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-		if(HAL_GPIO_ReadPin(GPIOC, GasSensor_Pin) == 0)
+		if(HAL_GPIO_ReadPin(GasSensor_GPIO_Port, GasSensor_Pin) == 0)
 			isGasDetected = true;
 		else
 			isGasDetected = false;
@@ -383,25 +383,28 @@ void StartRunActions(void const * argument)
 		if(!areSprinklersActivated)
 		{
 			osSemaphoreWait(countingSemaphoreHandle, osWaitForever);
-			if(currentTemp > maxTemp && isGasDetected)
-			{		
-				HAL_GPIO_WritePin(GPIOA, RLED_Pin, 1);
-				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
-				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
-			
-				areSprinklersActivated = true;
-			} 
-			else if (currentTemp <= maxTemp && isGasDetected)
+			if (isGasDetected)
 			{
-				HAL_GPIO_WritePin(GPIOA, RLED_Pin, 0);
-				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 1);
-				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
-			} 
+				if (currentTemp > maxTemp)
+				{		
+					HAL_GPIO_WritePin(RLED_GPIO_Port, RLED_Pin, 1);
+					HAL_GPIO_WritePin(YLED_GPIO_Port, YLED_Pin, 0);
+					HAL_GPIO_WritePin(GLED_GPIO_Port, GLED_Pin, 0);
+				
+					areSprinklersActivated = true;
+				} 
+				else
+				{
+					HAL_GPIO_WritePin(RLED_GPIO_Port, RLED_Pin, 0);
+					HAL_GPIO_WritePin(YLED_GPIO_Port, YLED_Pin, 1);
+					HAL_GPIO_WritePin(GLED_GPIO_Port, GLED_Pin, 0);
+				} 
+			}			
 			else 
 			{
-				HAL_GPIO_WritePin(GPIOA, RLED_Pin, 0);
-				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
-				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 1);
+				HAL_GPIO_WritePin(RLED_GPIO_Port, RLED_Pin, 0);
+				HAL_GPIO_WritePin(YLED_GPIO_Port, YLED_Pin, 0);
+				HAL_GPIO_WritePin(GLED_GPIO_Port, GLED_Pin, 1);
 			}
 			osSemaphoreRelease(countingSemaphoreHandle);
 		}

@@ -3,9 +3,9 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ÂµVision V5.29.0.0
+IDE-Version: µVision V5.29.0.0
 Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Adi Nisic, -, LIC=----
+License Information: - -, -, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.29.0.0
@@ -21,7 +21,7 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.7.0
 Dialog DLL:      TCM.DLL V1.36.5.0
  
 <h2>Project:</h2>
-C:\Users\Adi\Desktop\Protivpozarni-Sistem\MDK-ARM\ProtivpozarniSistem.uvprojx
+C:\Users\Emin\Documents\GitHub\Fire-suppression-system-STM32\MDK-ARM\ProtivpozarniSistem.uvprojx
 Project File Date:  01/12/2023
 
 <h2>Output:</h2>
@@ -29,32 +29,32 @@ Project File Date:  01/12/2023
 Build target 'ProtivpozarniSistem'
 compiling main.c...
 ../Core/Src/main.c(80): warning:  #188-D: enumerated type mixed with another type
-  		HAL_GPIO_WritePin(GPIOA, RLED_Pin, 0);
+  		HAL_GPIO_WritePin(RLED_GPIO_Port, RLED_Pin, 0);
 ../Core/Src/main.c(81): warning:  #188-D: enumerated type mixed with another type
-  		HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
+  		HAL_GPIO_WritePin(YLED_GPIO_Port, YLED_Pin, 0);
 ../Core/Src/main.c(82): warning:  #188-D: enumerated type mixed with another type
-  		HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
-../Core/Src/main.c(388): warning:  #188-D: enumerated type mixed with another type
-  				HAL_GPIO_WritePin(GPIOA, RLED_Pin, 1);
-../Core/Src/main.c(389): warning:  #188-D: enumerated type mixed with another type
-  				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
+  		HAL_GPIO_WritePin(GLED_GPIO_Port, GLED_Pin, 0);
 ../Core/Src/main.c(390): warning:  #188-D: enumerated type mixed with another type
-  				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
-../Core/Src/main.c(396): warning:  #188-D: enumerated type mixed with another type
-  				HAL_GPIO_WritePin(GPIOA, RLED_Pin, 0);
-../Core/Src/main.c(397): warning:  #188-D: enumerated type mixed with another type
-  				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 1);
+  					HAL_GPIO_WritePin(RLED_GPIO_Port, RLED_Pin, 1);
+../Core/Src/main.c(391): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(YLED_GPIO_Port, YLED_Pin, 0);
+../Core/Src/main.c(392): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(GLED_GPIO_Port, GLED_Pin, 0);
 ../Core/Src/main.c(398): warning:  #188-D: enumerated type mixed with another type
-  				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 0);
-../Core/Src/main.c(402): warning:  #188-D: enumerated type mixed with another type
-  				HAL_GPIO_WritePin(GPIOA, RLED_Pin, 0);
-../Core/Src/main.c(403): warning:  #188-D: enumerated type mixed with another type
-  				HAL_GPIO_WritePin(GPIOA, YLED_Pin, 0);
-../Core/Src/main.c(404): warning:  #188-D: enumerated type mixed with another type
-  				HAL_GPIO_WritePin(GPIOA, GLED_Pin, 1);
+  					HAL_GPIO_WritePin(RLED_GPIO_Port, RLED_Pin, 0);
+../Core/Src/main.c(399): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(YLED_GPIO_Port, YLED_Pin, 1);
+../Core/Src/main.c(400): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(GLED_GPIO_Port, GLED_Pin, 0);
+../Core/Src/main.c(405): warning:  #188-D: enumerated type mixed with another type
+  				HAL_GPIO_WritePin(RLED_GPIO_Port, RLED_Pin, 0);
+../Core/Src/main.c(406): warning:  #188-D: enumerated type mixed with another type
+  				HAL_GPIO_WritePin(YLED_GPIO_Port, YLED_Pin, 0);
+../Core/Src/main.c(407): warning:  #188-D: enumerated type mixed with another type
+  				HAL_GPIO_WritePin(GLED_GPIO_Port, GLED_Pin, 1);
 ../Core/Src/main.c: 12 warnings, 0 errors
 linking...
-Program Size: Code=15928 RO-data=416 RW-data=156 ZI-data=7068  
+Program Size: Code=15916 RO-data=416 RW-data=156 ZI-data=7068  
 FromELF: creating hex file...
 "ProtivpozarniSistem\ProtivpozarniSistem.axf" - 0 Error(s), 12 Warning(s).
 
@@ -73,14 +73,14 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_ProtivpozarniSistem
-  C:\Users\Adi\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include
-  C:\Users\Adi\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include
+  C:\Users\Emin\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include
+  C:\Users\Emin\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.6.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
